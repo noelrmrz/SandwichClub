@@ -13,6 +13,12 @@
     <!-- Error messages-->
     <string name="detail_error_message">Sandwich data not available</string>
 
+    <!-- Default text for also known as tv -->
+    <string name="no_alias_names">This sandwich has no other names</string>
+
+    <!-- Default text for origin tv-->
+    <string name="no_origin">Origin unknown</string>
+
     <string-array name="sandwich_names">
         <item>Ham and cheese sandwich</item>
         <item>Bosna</item>

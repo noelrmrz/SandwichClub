@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -63,9 +65,21 @@ public class DetailActivity extends AppCompatActivity {
         TextView alsoKnownAsTv = findViewById(R.id.also_known_tv);
         TextView descriptionTv = findViewById(R.id.description_tv);
         TextView ingredientsTv = findViewById(R.id.ingredients_tv);
-        originTv.append(" " + sandwich.getPlaceOfOrigin());
-        alsoKnownAsTv.append(" " + sandwich.getAlsoKnownAs().toString());
-        descriptionTv.append(" " + sandwich.getDescription());
-        ingredientsTv.append(" " + sandwich.getIngredients().toString());
+
+        if (!sandwich.getPlaceOfOrigin().isEmpty())
+            originTv.setText(sandwich.getPlaceOfOrigin());
+        if (sandwich.getAlsoKnownAs().size() != 0)
+            alsoKnownAsTv.setText(stringBuilder(sandwich.getAlsoKnownAs()));
+        
+        descriptionTv.setText(sandwich.getDescription());
+        ingredientsTv.setText(stringBuilder(sandwich.getIngredients()));
+    }
+
+    private String stringBuilder(List<String> stringList) {
+        StringBuilder sb = new StringBuilder();
+        for(String i: stringList) {
+            sb.append(i + " ");
+        }
+        return sb.toString();
     }
 }
