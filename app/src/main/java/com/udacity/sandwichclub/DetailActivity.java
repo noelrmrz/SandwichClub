@@ -59,16 +59,22 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Populates UI with the data retrieved from the JSON Objects
+     * @param sandwich
+     */
     private void populateUI(Sandwich sandwich) {
         TextView originTv = findViewById(R.id.origin_tv);
         TextView alsoKnownAsTv = findViewById(R.id.also_known_tv);
         TextView descriptionTv = findViewById(R.id.description_tv);
         TextView ingredientsTv = findViewById(R.id.ingredients_tv);
 
-        if (!sandwich.getPlaceOfOrigin().isEmpty())
+        if (!sandwich.getPlaceOfOrigin().isEmpty()) {
             originTv.setText(sandwich.getPlaceOfOrigin());
-        if (sandwich.getAlsoKnownAs().size() != 0)
+        }
+        if (sandwich.getAlsoKnownAs().size() != 0) {
             alsoKnownAsTv.setText(TextUtils.join(", ", sandwich.getAlsoKnownAs()));
+        }
 
         descriptionTv.setText(sandwich.getDescription());
         ingredientsTv.setText(TextUtils.join(", ", sandwich.getIngredients()));
