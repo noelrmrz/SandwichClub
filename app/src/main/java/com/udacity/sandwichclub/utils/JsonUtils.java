@@ -22,12 +22,19 @@ public class JsonUtils {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
+
+            // Retrieve the JSONObject containing the name key-value pairs
             JSONObject names = jsonObject.getJSONObject("name");
             mainName = names.getString("mainName");
+
+            // Retrieve the JSONArray containing other names
             JSONArray alsoKnownAsJson = names.getJSONArray("alsoKnownAs");
             alsoKnownAs = getList(alsoKnownAsJson);
+
+            // Retrieve the JSONArray containing the ingredients
             JSONArray ingredientsJson = jsonObject.getJSONArray("ingredients");
             ingredients = getList(ingredientsJson);
+
             description = jsonObject.getString("description");
             placeOfOrigin = jsonObject.getString("placeOfOrigin");
             image = jsonObject.getString("image");
@@ -39,6 +46,12 @@ public class JsonUtils {
         return new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
     }
 
+    /**
+     * This method extracts the elements in the JSONArray and copies them in a List
+     * @param jsonArray the array to convert to a List
+     * @return the converted JSONArray
+     * @throws JSONException
+     */
     private static List<String> getList(JSONArray jsonArray) throws JSONException {
         List<String> myList = new ArrayList<String>();
         for (int i = 0; i < jsonArray.length(); i++) {
